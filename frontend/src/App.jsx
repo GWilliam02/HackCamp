@@ -1,16 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import ChatBot from 'react-simple-chatbot'
-
-let message = "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
-
-function App() {
-  const [count, setCount] = useState(0)
-
 import React from 'react';
 import backgroundImage from './resources/background.jpg'; // Adjust the path as needed
+import CpscBot from './CpscBot';
 
 const App = () => {
   return (
@@ -34,7 +24,7 @@ const App = () => {
 
   <input
     type="text"
-    className="w-[1100px] h-[60px] pl-[21px] pr-2.5 py-2.5 bg-stone-50 rounded-[5px] border border-zinc-400 justify-end inline-flex"
+    className="pl-[21px] pr-2.5 py-2.5 bg-stone-50 rounded-[5px] border border-zinc-400 justify-end inline-flex"
 
     style={{
       width: '80vw',
@@ -45,16 +35,7 @@ const App = () => {
     placeholder="Ask me a question"
   />
 
-  
-
-      
-      {/* <div className="w-[1100px] h-[60px] pl-[21px] pr-2.5 py-2.5 bg-stone-50 rounded-[5px] border border-zinc-400 justify-end items-center gap-[805px] inline-flex">
-    <div className="text-neutral-400 text-xl font-normal font-['Inter']">Ask me a question</div>
-    <div className="w-[90px] h-10 relative">
-        <div className="w-[90px] h-10 left-0 top-0 absolute bg-emerald-300 bg-opacity-80 rounded-[15px]" />
-        <div className="left-[12px] top-[8px] absolute text-black text-xl font-semibold font-['Inter']">ENTER</div>
-    </div>
-</div> */}
+  <CpscBot/>
       
     </div>
   );
@@ -65,32 +46,4 @@ const App = () => {
 // 16px
 
 
-function CpscBot(message_id) {
-  return (
-    <>
-    <h1>CPSC Advising ChatBot</h1>
-    <ChatBot
-      steps={[
-        {
-          id: 'initial',
-          message: message,
-          trigger: 'question',
-        },
-        {
-          id: 'question',
-          user: true,
-          trigger: 'response',
-        },
-        {
-          id: 'response',
-          message: 'placeholder',
-          trigger: 'question',
-        }
-      ]}
-    />
-    </>
-  )
-}
-
-// export default App
-export default CpscBot
+export default App;
