@@ -15,13 +15,7 @@ const App = () => {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-    <div className="bg-neutral-50" 
-      style={{
-        width: '100vw',
-        height: '10vh',
-        position: 'fixed',
-        top: 0,
-      }}/>
+
 
 
 
