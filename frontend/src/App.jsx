@@ -2,6 +2,8 @@ import React from 'react';
 import backgroundImage from './resources/background.jpg'; // Adjust the path as needed
 import CpscBot from './CpscBot';
 
+import BotWrapper from './Botwrapper';
+
 const App = () => {
   return (
     <div style={{ 
@@ -22,20 +24,9 @@ const App = () => {
       }}/>
 
 
-  <input
-    type="text"
-    className="pl-[21px] pr-2.5 py-2.5 bg-stone-50 rounded-[5px] border border-zinc-400 justify-end inline-flex"
 
-    style={{
-      width: '80vw',
-      height: '7vh',
-      position: 'fixed',
-      bottom: 10,
-    }}
-    placeholder="Ask me a question"
-  />
 
-  <CpscBot/>
+  <BotWrapper/>
       
     </div>
   );

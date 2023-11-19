@@ -1,6 +1,7 @@
 import ChatBot from 'react-simple-chatbot'
 import React from 'react'
 
+
 let message = "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
 
 
@@ -25,6 +26,10 @@ function CpscBot() {
             trigger: 'question',
           }
         ]}
+
+        width='100vw'
+        height='100vh'
+
       />
       </>
     )

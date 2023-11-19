@@ -5,7 +5,5 @@ import CpscBot from './App.jsx'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <CpscBot />
-  </React.StrictMode>,
+    <CpscBot />,
 )
