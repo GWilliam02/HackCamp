@@ -2,6 +2,7 @@ import requests
 import json
 from flask import Flask, jsonify, request
 from flask_cors import CORS 
+import config as config
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -17,13 +18,13 @@ def index():
 
     headers = {
     "Content-Type": "application/json",
-    "x-auth-key": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1"
+    "x-auth-key": config.X_AUTH_KEY
     }
 
     data = {
-    "user_id": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
-    "saved_item_id": "fjcuNfSyPi9E3jaL58nN53",
-    "api_key": "f9ce9031b8024177aa734e357102f078",
+    "user_id": config.X_AUTH_KEY,
+    "saved_item_id": config.PIPELINE_KEY,
+    "api_key": config.API_KEY,
     "pipeline_inputs": [
             {"input_name": "question", "value": user_input},
         ]
@@ -41,7 +42,7 @@ def index():
 
     url = f"https://api-v2.agenthub.dev/plrun?run_id={run_id}"
     headers = {
-        "x-auth-key": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1"
+        "x-auth-key": config.X_AUTH_KEY
     }
 
     while (True):

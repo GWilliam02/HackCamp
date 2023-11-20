@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from "axios";
-// Import the getText function
 
 
 const QAndAApp = () => {
