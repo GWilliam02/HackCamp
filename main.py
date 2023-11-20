@@ -18,14 +18,16 @@ def index():
     "x-auth-key": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1"
     }
 
+    print(question["query"])
+
     data = {
     "user_id": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
     "saved_item_id": "fjcuNfSyPi9E3jaL58nN53",
     "api_key": "f9ce9031b8024177aa734e357102f078",
     "pipeline_inputs": 
-        [
-            {"input_name": "question", "value": "what courses should i take in first year to get into computer science major"},
-        ]
+        # [
+        #     {"input_name": "question", "value": "what courses should i take in first year to get into computer science major"},
+        # ]
         [
             {"input_name": "question", "value": question["query"]}
         ]

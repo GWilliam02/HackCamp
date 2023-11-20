@@ -1,14 +1,16 @@
 import ChatBot from "react-simple-chatbot";
-import React from "react";
-import { getText } from "./context/Agenthub";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-
-// const self = this;
-// const { steps } = this.props;
-// const search = steps.search.value;
+import { getText } from "./context/Agenthub";
+import { useState, useContext } from "react";
+import MyComponent from "./context/Text";
 
 let message =
   "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
+
+// const getText = async () => {
+//   const result = await getText(text).toString();
+// };
 
 function CpscBot() {
   return (
@@ -23,11 +25,12 @@ function CpscBot() {
           {
             id: "question",
             user: true,
-            trigger: "response",
+            trigger: "4",
           },
           {
-            id: "response",
-            message: { previousValue },
+            id: "4",
+            component: <MyComponent data={{ previousValue, steps }} />,
+            waitAction: true,
             trigger: "question",
           },
         ]}
