@@ -34,22 +34,56 @@ const QAndAApp = () => {
 
   return (
     <div>
-      <h1>Async Q&A App</h1>
+
 
       <form onSubmit={handleSubmit}>
         <label>
-          Enter your question:
-          <input type="text" value={question} onChange={handleQuestionChange} />
+        Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!
+          <input 
+          type="text" 
+          value={question} 
+          onChange={handleQuestionChange}
+          style={{ 
+
+            width: '80vw',  // Set height to fill the entire viewport
+            height: '5vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '2px solid black'
+
+          }} />
         </label>
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Loading...' : 'Get Answer'}
+        <button type="submit" 
+        disabled={loading}
+        style={{ 
+
+            backgroundColor: "#ABDFCE",
+
+            width: '80vw',  // Set height to fill the entire viewport
+            height: '5vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '2px solid black'
+
+          }}
+        >
+          {loading ? 'Loading...' : "Get Answer"}
         </button>
       </form>
 
       {answer && (
-        <div>
-          <h2>Answer:</h2>
+        <div style={{ 
+            backgroundColor: 'white',
+            backgroundSize: 'cover',  // You can add other background properties here
+            backgroundRepeat: 'no-repeat',
+            width: "80vw",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            }}>
           <p>{answer}</p>
         </div>
       )}

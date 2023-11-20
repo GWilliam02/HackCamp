@@ -21,7 +21,7 @@ def index():
     "saved_item_id": "fjcuNfSyPi9E3jaL58nN53",
     "api_key": "f9ce9031b8024177aa734e357102f078",
     "pipeline_inputs": [
-            {"input_name": "question", "value": "what courses should i take in first year to get into computer science major"},
+            {"input_name": "question", "value": data.get("question")},
         ]
     }
 

@@ -1,55 +1,55 @@
 import axios from "axios";
 
-let url = "https://api-v2.agenthub.dev/remote_start_pipeline";
-
-let headers = {
+let agenthubUrl = "https://api-v2.agenthub.dev/remote_start_pipeline";
+let agenthubHeaders = {
   "Content-Type": "application/json",
   "x-auth-key": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
 };
 
-let data = {
-  user_id: "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
-  saved_item_id: "fjcuNfSyPi9E3jaL58nN53",
-  api_key: "f9ce9031b8024177aa734e357102f078",
-  pipeline_inputs: [
-    {
-      input_name: "question",
-      value:
-        "what courses should i take in first year to get into computer science major",
-    },
-  ],
-};
+export const getOutput = async (userInput) => {
+  try {
+    // Make a request to start the pipeline with user input
+    const startPipelineData = {
+      user_id: "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
+      saved_item_id: "fjcuNfSyPi9E3jaL58nN53",
+      api_key: "f9ce9031b8024177aa734e357102f078",
+      pipeline_inputs: [
+        {
+          input_name: "question",
+          value: data.get("question"),
+        },
+      ],
+    };
 
-export const getOutput = async (text) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify(data),
-  });
+    const startPipelineResponse = await axios.post(agenthubUrl, startPipelineData, {
+      headers: agenthubHeaders,
+    });
 
-  console.log(response);
+    if (!startPipelineResponse.data.ok) {
+      return { status: "ERROR", message: "Failed to start the pipeline" };
+    }
 
-  //   let run_id = response.split("run_id=")[1];
-  //   console.log(run_id);
+    const runId = startPipelineResponse.data.run_id;
 
-  //   url = "https://api-v2.agenthub.dev/plrun?run_id=${run_id}";
-  //   headers = {
-  //     "x-auth-key": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
-  //   };
+    // Poll the status until it's done
+    const pipelineStatusUrl = `https://api-v2.agenthub.dev/plrun?run_id=${runId}`;
+    while (true) {
+      const pipelineStatusResponse = await axios.get(pipelineStatusUrl, {
+        headers: agenthubHeaders,
+      });
 
-  //   while (true) {
-  //     response = axios.post(url, headers);
-  //     console.log(response.state);
-  //     if (response.state == "FAILED") {
-  //       console.log(response.output);
-  //       break;
-  //     }
-  //     if (response.state == "DONE") {
-  //       console.log(response.json.outputs.answer2);
-  //       break;
-  //     }
-  //   }
-  //   return "Done";
+      const state = pipelineStatusResponse.data.state;
+
+      if (state === "FAILED") {
+        return { status: "FAILED", message: pipelineStatusResponse.data };
+      } else if (state === "DONE") {
+        const answer2Value = pipelineStatusResponse.data.outputs.answer2;
+        return { status: "DONE", answer2Value };
+      }
+    }
+  } catch (error) {
+    return { status: "ERROR", message: error.message };
+  }
 };
 
 export const sayHello = () => {
@@ -57,22 +57,27 @@ export const sayHello = () => {
 };
 
 export const getText = async () => {
-  // Example data to send to the Python script
-  const requestData = { name: "John" };
+  try {
+    // Example data to send to the Python script
+    const requestData = { name: "John" };
 
-  // Make a POST request to the Flask server
-  const response = await fetch("http://127.0.0.1:5000/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(requestData),
-  });
+    // Make a POST request to the Flask server
+    const response = await fetch("http://127.0.0.1:5000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    });
 
-  // Parse the JSON response
-  const result = await response.json();
-  let returnVal = result.answer2_value;
+    // Parse the JSON response
+    const result = await response.json();
+    const returnVal = result.answer2_value;
 
-  console.log(result.answer2_value);
-  return returnVal;
+    console.log(result.answer2_value);
+    return returnVal;
+  } catch (error) {
+    console.error("Error fetching answer:", error);
+    return null;
+  }
 };
