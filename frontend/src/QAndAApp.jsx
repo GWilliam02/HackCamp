@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 // Import the getText function
-import { getOutput, getText } from './context/Agenthub'; // Update the path accordingly
+
 
 const QAndAApp = () => {
   const [question, setQuestion] = useState('');
@@ -39,6 +39,16 @@ const QAndAApp = () => {
       // Hide loading state
       setLoading(false);
     }
+  };
+
+  function Text({ answer }) {
+    const formattedAnswer = answer.replace(/\n/g, '<br />');
+  
+    return (
+      <div style={{ whiteSpace: 'pre-line' }}>
+        <p dangerouslySetInnerHTML={{ __html: formattedAnswer }}></p>
+      </div>
+    );
   };
 
   return (
@@ -94,7 +104,7 @@ const QAndAApp = () => {
             alignItems: 'center',
             }}>
           
-          <p >{answer}</p>
+          <Text answer={answer} />;
         </div>
       )}
     </div>
