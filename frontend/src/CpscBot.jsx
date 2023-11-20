@@ -29,7 +29,9 @@ function CpscBot() {
           },
           {
             id: "4",
-            component: <MyComponent data={{ previousValue, steps }} />,
+            component: () => {
+              return <MyComponent data={previousValue} />;
+            },
             waitAction: true,
             trigger: "question",
           },
