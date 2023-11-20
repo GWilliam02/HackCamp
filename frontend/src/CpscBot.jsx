@@ -3,6 +3,13 @@ import React from 'react'
 
 let message = "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
 
+const test_responses = ["random string 1", "random string 2", "random string 3", "random string 4"];
+
+function generateResponse(possible_responses) {
+  const index = Math.floor(Math.random() * possible_responses.length);
+  return possible_responses[index];
+}
+
 
 function CpscBot() {
     return (
@@ -21,7 +28,7 @@ function CpscBot() {
           },
           {
             id: 'response',
-            message: 'placeholder',
+            message: generateResponse(test_responses),
             trigger: 'question',
           }
         ]}
