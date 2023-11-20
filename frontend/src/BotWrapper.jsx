@@ -7,12 +7,12 @@ const otherFontTheme = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     fontFamily: 'Helvetica Neue',
-    headerBgColor: '#FABDFCE',
+    headerBgColor: '#FCFCFC',
     headerFontColor: '000000',
     headerFontSize: '16px',
-    botBubbleColor: '#A8E7FF',
+    botBubbleColor: '#EBF8C4',
     botFontColor: '#000000',
-    userBubbleColor: '#EBF8C4',
+    userBubbleColor: '#A8E7FF',
     userFontColor: '#'
   };
 
