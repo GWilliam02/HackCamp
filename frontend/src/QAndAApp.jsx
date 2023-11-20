@@ -47,7 +47,7 @@ const QAndAApp = () => {
 
       <form onSubmit={handleSubmit}>
         <label>
-        Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!
+        Hello! I am a Science student advising chatbot! Ask me about your program requirements!
           <input 
           type="text" 
           value={question} 
