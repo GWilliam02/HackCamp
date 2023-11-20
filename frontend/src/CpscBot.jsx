@@ -1,6 +1,7 @@
 import ChatBot from 'react-simple-chatbot'
 import React from 'react'
 
+
 let message = "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
 
 const test_responses = ["random string 1", "random string 2", "random string 3", "random string 4"];
@@ -32,6 +33,10 @@ function CpscBot() {
             trigger: 'question',
           }
         ]}
+
+        width='100vw'
+        height='100vh'
+
       />
       </>
     )
