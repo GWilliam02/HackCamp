@@ -1,6 +1,6 @@
 import requests
 import json
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS 
 
 app = Flask(__name__)
@@ -8,6 +8,8 @@ CORS(app)
 
 @app.route('/', methods = ['POST', 'GET'])
 def index():
+
+    question = request.json
 
     url = "https://api-v2.agenthub.dev/remote_start_pipeline"
 
@@ -20,8 +22,12 @@ def index():
     "user_id": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
     "saved_item_id": "fjcuNfSyPi9E3jaL58nN53",
     "api_key": "f9ce9031b8024177aa734e357102f078",
-    "pipeline_inputs": [
+    "pipeline_inputs": 
+        [
             {"input_name": "question", "value": "what courses should i take in first year to get into computer science major"},
+        ]
+        [
+            {"input_name": "question", "value": question["query"]}
         ]
     }
 

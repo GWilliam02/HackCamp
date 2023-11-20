@@ -1,22 +1,14 @@
 import ChatBot from "react-simple-chatbot";
 import React from "react";
-import { getOutput, sayHello, getText } from "./context/Agenthub";
+import { getText } from "./context/Agenthub";
+import PropTypes from "prop-types";
+
+// const self = this;
+// const { steps } = this.props;
+// const search = steps.search.value;
 
 let message =
   "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
-
-const test_responses = [
-  "random string 1",
-  "random string 2",
-  "random string 3",
-  "random string 4",
-];
-
-function generateResponse(possible_responses) {
-  const index = Math.floor(Math.random() * possible_responses.length);
-  getText("hello");
-  return possible_responses[index];
-}
 
 function CpscBot() {
   return (
@@ -35,7 +27,7 @@ function CpscBot() {
           },
           {
             id: "response",
-            message: getText("hello").toString(),
+            message: { previousValue },
             trigger: "question",
           },
         ]}
