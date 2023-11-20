@@ -1,8 +1,7 @@
 import React from 'react';
 import backgroundImage from './resources/background.jpg'; // Adjust the path as needed
-import CpscBot from './CpscBot';
 
-import BotWrapper from './Botwrapper';
+import QAndAApp from './QAndAApp';
 
 const App = () => {
   return (
@@ -16,11 +15,11 @@ const App = () => {
       alignItems: 'center',
     }}>
 
+    <QAndAApp/>
+
+    
 
 
-
-
-  <BotWrapper/>
       
     </div>
   );

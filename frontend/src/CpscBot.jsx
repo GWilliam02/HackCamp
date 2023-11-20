@@ -5,18 +5,21 @@ import { getOutput, sayHello, getText } from "./context/Agenthub";
 let message =
   "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
 
-const test_responses = [
-  "random string 1",
-  "random string 2",
-  "random string 3",
-  "random string 4",
-];
 
 function generateResponse(possible_responses) {
   const index = Math.floor(Math.random() * possible_responses.length);
   getText("hello");
   return possible_responses[index];
 }
+
+
+CpscBot.defaultProps = {
+  steps: undefined,
+  triggerNextStep: undefined,
+};
+
+const answer = await getText("hello").toString();
+
 
 function CpscBot() {
   return (
@@ -35,7 +38,13 @@ function CpscBot() {
           },
           {
             id: "response",
-            message: getText("hello").toString(),
+            message: () => {
+              return getText('hello').then(answer => {
+                return answer;
+              })
+            },
+
+            waitAction: true,
             trigger: "question",
           },
         ]}
