@@ -13,10 +13,11 @@ export const getOutput = async (userInput) => {
       user_id: "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
       saved_item_id: "fjcuNfSyPi9E3jaL58nN53",
       api_key: "f9ce9031b8024177aa734e357102f078",
+      openai_token: "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",
       pipeline_inputs: [
         {
           input_name: "question",
-          value: data.get("question"),
+          value: userInput,
         },
       ],
     };
@@ -56,16 +57,18 @@ export const sayHello = () => {
   return "helloworld";
 };
 
-export const getText = async () => {
+export const getText = async (question) => {
   try {
     // Example data to send to the Python script
-    const requestData = { name: "John" };
+    const requestData = { name: question };
 
     // Make a POST request to the Flask server
-    const response = await fetch("http://127.0.0.1:5000/", {
+    const response = await fetch("http://127.0.0.1:8000/", {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-auth-key": "xN1WJ1T18BXsmllIEEw8Juq0Zmp1",
       },
       body: JSON.stringify(requestData),
     });

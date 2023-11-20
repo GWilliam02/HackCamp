@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
+import axios from "axios";
 // Import the getText function
-import { getText } from './context/Agenthub'; // Update the path accordingly
+import { getOutput, getText } from './context/Agenthub'; // Update the path accordingly
 
 const QAndAApp = () => {
   const [question, setQuestion] = useState('');
@@ -20,10 +20,19 @@ const QAndAApp = () => {
 
     try {
       // Use the getText function to get the answer
-      const answerText = await getText(question);
+      const response = await axios.post('http://127.0.0.1:8000/', {
+                user_input: question,
+            });
+
+      
+      const rans = response.data.answer2_value;
+
+      
+      const niceans = rans.replace(". ", ".\n");
 
       // Update state with the answer
-      setAnswer(answerText);
+      setAnswer(niceans);
+
     } catch (error) {
       console.error('Error fetching answer:', error);
     } finally {
@@ -84,7 +93,8 @@ const QAndAApp = () => {
             justifyContent: 'center',
             alignItems: 'center',
             }}>
-          <p>{answer}</p>
+          
+          <p >{answer}</p>
         </div>
       )}
     </div>
