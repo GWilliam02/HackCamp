@@ -1,47 +1,50 @@
-import ChatBot from 'react-simple-chatbot'
-import React from 'react'
+import ChatBot from "react-simple-chatbot";
+import React from "react";
+import { getOutput, sayHello, getText } from "./context/Agenthub";
 
+let message =
+  "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
 
-let message = "Hello! I am a CPSC student advising chatbot! Ask me about your program requirements!";
-
-const test_responses = ["random string 1", "random string 2", "random string 3", "random string 4"];
+const test_responses = [
+  "random string 1",
+  "random string 2",
+  "random string 3",
+  "random string 4",
+];
 
 function generateResponse(possible_responses) {
   const index = Math.floor(Math.random() * possible_responses.length);
+  getText("hello");
   return possible_responses[index];
 }
 
-
 function CpscBot() {
-    return (
-      <>
+  return (
+    <>
       <ChatBot
         steps={[
           {
-            id: 'initial',
+            id: "initial",
             message: message,
-            trigger: 'question',
+            trigger: "question",
           },
           {
-            id: 'question',
+            id: "question",
             user: true,
-            trigger: 'response',
+            trigger: "response",
           },
           {
-            id: 'response',
-            message: generateResponse(test_responses),
-            trigger: 'question',
-          }
+            id: "response",
+            message: getText("hello").toString(),
+            trigger: "question",
+          },
         ]}
-
-        width='100vw'
-        height='100vh'
-
+        width="100vw"
+        height="100vh"
       />
-      </>
-    )
-  }
-  
-  // export default App
-  export default CpscBot
-  
+    </>
+  );
+}
+
+// export default App
+export default CpscBot;
