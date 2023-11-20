@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .bg-custom-background {
+      background-image: url('frontend/src/resources/background.jpg');
+      /* Add other background properties if needed */
+    }
+  }
